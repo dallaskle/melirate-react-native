@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "melirate-frontend",
+    "slug": "melirate-frontend",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
