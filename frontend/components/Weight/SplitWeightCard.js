@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const WeightCard = (props) => {
   return (
-    <View style={[styles.container, {width: props.width, borderWidth: props.borderWidth}]}>
+    <View style={[styles.container, {width: props.width, borderWidth: props.borderWidth, backgroundColor: props.backgroundColor}]}>
         
         <View style={styles.main}>
             <Text style={styles.header}>{props.header}</Text>
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderColor: 'black',
+    borderRadius: 12
   },
   main: {
     padding: 5,

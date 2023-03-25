@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Button from '../Button'
 
 const WeightCard = (props) => {
   return (
@@ -7,7 +8,7 @@ const WeightCard = (props) => {
         
         <View style={styles.main}>
             <Text style={styles.header}>{props.header}</Text>
-            <Text style={styles.weight}>{props.amount} {props.amountType}</Text>
+            {false ? <Text style={styles.weight}>{props.amount} {props.amountType}</Text> : <Button text={"ADD WEIGHT"} onPress={props.onPress} />}
         </View>
 
         <View style={styles.row}>
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderWidth: 1,
     borderColor: 'black',
+    borderRadius: 12
   },
   main: {
     padding: 10,
