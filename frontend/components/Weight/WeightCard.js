@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { AbsoluteToPercentChange } from '../../converters/AbsoluteToPercentChange';
 import Button from '../Button'
 
 const WeightCard = (props) => {
@@ -8,24 +9,24 @@ const WeightCard = (props) => {
         
         <View style={styles.main}>
             <Text style={styles.header}>{props.header}</Text>
-            {false ? <Text style={styles.weight}>{props.amount} {props.amountType}</Text> : <Button text={"ADD WEIGHT"} onPress={props.onPress} />}
+            {props.amount ? <Text style={styles.weight}>{props.amount} {props.amountType}</Text> : <Button text={"ADD WEIGHT"} onPress={props.onPress} />}
         </View>
 
         <View style={styles.row}>
             <View style={styles.column}>
                 <Text style={styles.label}>1D</Text>
                 <Text style={styles.value}>{props.changes[0]}</Text>
-                <Text style={styles.change}>-0.1%</Text>
+                <Text style={styles.change}>{AbsoluteToPercentChange(props.changes[0], props.amount)}%</Text>
             </View>
             <View style={styles.column}>
                 <Text style={styles.label}>1W</Text>
                 <Text style={styles.value}>{props.changes[1]}</Text>
-                <Text style={styles.change}>-0.1%</Text>
+                <Text style={styles.change}>{AbsoluteToPercentChange(props.changes[1], props.amount)}%</Text>
             </View>
             <View style={styles.column}>
                 <Text style={styles.label}>1M</Text>
                 <Text style={styles.value}>{props.changes[2]}</Text>
-                <Text style={styles.change}>-0.1%</Text>
+                <Text style={styles.change}>{AbsoluteToPercentChange(props.changes[2], props.amount)}%</Text>
             </View>
         </View>
     </View>
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
   },
   main: {
     padding: 10,
+    alignItems: 'center'
   },
   header: {
     fontSize: 30,

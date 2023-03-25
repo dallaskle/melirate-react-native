@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { AbsoluteToPercentChange } from '../../converters/AbsoluteToPercentChange';
 
 const WeightCard = (props) => {
   return (
@@ -14,17 +15,17 @@ const WeightCard = (props) => {
             <View style={styles.column}>
                 <Text style={styles.label}>1D</Text>
                 <Text style={styles.value}>{props.changes[0]}</Text>
-                <Text style={styles.change}>-0.1%</Text>
+                <Text style={styles.change}>{AbsoluteToPercentChange(props.changes[0], props.amount)}%</Text>
             </View>
             <View style={styles.column}>
                 <Text style={styles.label}>1W</Text>
                 <Text style={styles.value}>{props.changes[1]}</Text>
-                <Text style={styles.change}>-0.1%</Text>
+                <Text style={styles.change}>{AbsoluteToPercentChange(props.changes[1], props.amount)}%</Text>
             </View>
             <View style={styles.column}>
                 <Text style={styles.label}>1M</Text>
                 <Text style={styles.value}>{props.changes[2]}</Text>
-                <Text style={styles.change}>-0.1%</Text>
+                <Text style={styles.change}>{AbsoluteToPercentChange(props.changes[2], props.amount)}%</Text>
             </View>
         </View>
     </View>

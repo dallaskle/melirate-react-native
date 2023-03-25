@@ -1,12 +1,14 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import WeightCard from '../components/Weight/WeightCard';
 import SplitWeightCard from '../components/Weight/SplitWeightCard'
 import InputModal from '../components/InputModal';
+import GoalBox from '../components/Goals/GoalBox'
+import { GetWeightCardDataService } from '../services/GetWeightCardDataService';
 
 const Weight = () => {
 
-  const weights = [
+  /*const weights = [
     {
       header: 'Body Weight',
       amount: 76.1,
@@ -31,7 +33,9 @@ const Weight = () => {
       amountType: '%',
       changes: [-0.2, -0.2, -0.2],
     },
-  ]
+  ]*/
+
+  let weights = GetWeightCardDataService(1);
 
   //States
   const [showInputModal, setShowInputModal] = useState(false)
@@ -41,6 +45,9 @@ const Weight = () => {
 
   return (
     <View style={styles.container}>
+
+      <GoalBox />
+
       <WeightCard width={'70%'} header={weights[0].header} amount={weights[0].amount} amountType={weights[0].amountType} changes={weights[0].changes} onPress={()=>displayInputModal('bodyWeight')} />
 
       <View style={styles.row}>

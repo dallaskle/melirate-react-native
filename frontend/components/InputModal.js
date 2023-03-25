@@ -7,7 +7,7 @@ const InputModal = ({ visible, onClose, children }) => {
     <Modal animationType="slide" transparent visible={visible} onRequestClose={onClose}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <RangeSlider startValue={76.1} step={0.1} onChange={(e)=>console.log('change')} />
+          <RangeSlider startValue={76.1} step={0.1} onChange={(e)=>console.log(e[0])} />
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>

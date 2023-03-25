@@ -12,11 +12,11 @@ const RangeSlider = ({ startValue, step, onChange }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{value.toFixed(1)}</Text>
+      <Text style={styles.label}>{value}</Text>
       <Slider
         style={styles.slider}
-        minimumValue={0}
-        maximumValue={100}
+        minimumValue={startValue * .8}
+        maximumValue={startValue * 1.2}
         step={step}
         value={value}
         onValueChange={handleValueChange}
