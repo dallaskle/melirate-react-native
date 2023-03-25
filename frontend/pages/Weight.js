@@ -1,0 +1,64 @@
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import WeightCard from '../components/Weight/WeightCard';
+import SplitWeightCard from '../components/Weight/SplitWeightCard'
+
+const Weight = () => {
+
+  const weights = [
+    {
+      header: 'Body Weight',
+      amount: 76.1,
+      amountType: 'kg',
+      changes: [-0.2, -0.2, -0.2],
+    },
+    {
+      header: 'Body Fat %',
+      amount: 23.4,
+      amountType: '%',
+      changes: [-0.2, -0.2, -0.2],
+    },
+    {
+      header: 'Muscle',
+      amount: 22.8,
+      amountType: 'kg',
+      changes: [-0.2, -0.2, -0.2],
+    },
+    {
+      header: 'Hydration %',
+      amount: 56.2,
+      amountType: '%',
+      changes: [-0.2, -0.2, -0.2],
+    },
+  ]
+
+  return (
+    <View style={styles.container}>
+      <WeightCard width={'70%'} header={weights[0].header} amount={weights[0].amount} amountType={weights[0].amountType} changes={weights[0].changes} />
+
+      <View style={styles.row}>
+        <SplitWeightCard width={'40%'} borderWidth={.5} header={weights[1].header} amount={weights[1].amount} amountType={weights[1].amountType} changes={weights[1].changes} />
+        <SplitWeightCard width={'40%'} borderWidth={.5} header={weights[2].header} amount={weights[2].amount} amountType={weights[2].amountType} changes={weights[2].changes} />
+      </View>
+
+      <SplitWeightCard width={'40%'} borderWidth={0} header={weights[3].header} amount={weights[3].amount} amountType={weights[3].amountType} changes={weights[3].changes} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      width: '100%',
+      alignItems: 'center',
+    },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+      marginBottom: 10,
+      width: '100%'
+    },
+  });
+
+export default Weight;
