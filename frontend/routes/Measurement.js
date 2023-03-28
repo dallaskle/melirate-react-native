@@ -45,8 +45,8 @@ export const saveUserMeasurement = (user_id, _params) => {
     "shoulders": _params.shoulders, 
     "stomach": _params.stomach,
     "thighs": _params.thighs,
-    "measurementId": Math.floor(Math.random * 100000),
-    "timestamp": "2023-03-28"
+    "measurementId": _params.measurementId ? _params.measurementId : Math.floor(Math.random * 100000),
+    "timestamp": _params.timestamp ? _params.timestamp :  "2023-03-28"
   }
 
   return axios.post( `${BASE_URL}/${path}`, data, {

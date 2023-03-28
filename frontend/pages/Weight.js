@@ -47,9 +47,11 @@ const Weight = () => {
   return (
     <View style={styles.container}>
 
-      <ImageUploader />
+     
 
       <GoalBox />
+
+      <ImageUploader />
 
       <WeightCard width={'70%'} header={weights[0].header} amount={weights[0].amount} amountType={weights[0].amountType} changes={weights[0].changes} onPress={()=>displayInputModal('bodyWeight')} />
 

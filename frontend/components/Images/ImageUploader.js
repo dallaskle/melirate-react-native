@@ -5,7 +5,7 @@ import axios from 'axios';
 import { BASE_URL } from '../../routes/url';
 import { saveUserImage, getUserImage } from '../../routes/Image';
 
-export default function ImageUploader() {
+export default function ImageUploader(props) {
   const [image, setImage] = useState(null);
 
   const getImage = () => {
@@ -32,39 +32,13 @@ export default function ImageUploader() {
   };
 
   const uploadImage = async (uri) => {
-    console.log(uri)
-    saveUserImage("12345", {
+    props.takeURL(uri);
+    /*saveUserImage("12345", {
       imageUrl: uri,//Buffer.from(uri, "base64").toString(),
       view: "front"
     }).then(res => console.log(res)).catch(err => {
       console.log(err)
-      console.log(err.response.data)
-    })
-
-    /*let formData = new FormData();
-    let fileExtension = uri.split('.').pop();
-    formData.append('file', {
-      uri: uri,
-      name: `image.${fileExtension}`,
-      type: `image/${fileExtension}`,
-    });
-
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/12345/images`,
-        formData,
-        {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-
-    }*/
+    })*/
   };
 
   return (

@@ -43,8 +43,8 @@ export const saveUserWeight = (user_id, _params) => {
     "bodyWeight": _params.bodyWeight,
     "hydration": _params.hydration,
     "muscle": _params.muscle,
-    "weightId": "24354",
-    "timestamp": "2023-03-28"
+    "weightId": _params.weightId ? _params.weightId : "231341",
+    "timestamp": _params.timestamp ? _params.timestamp : "2023-03-28"
   }
 
   return axios.post( `${BASE_URL}/${path}`, data, {

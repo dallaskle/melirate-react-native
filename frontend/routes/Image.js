@@ -41,8 +41,8 @@ export const saveUserImage = (user_id, _params) => {
   const data = {
     "imageUrl": _params.imageUrl,
     "view": _params.view,
-    "imageId": "24355",
-    "timestamp": "2023-03-28"
+    "imageId": _params.imageId ? _params.imageId : "24355",
+    "timestamp": _params.timestamp ? _params.timestamp :  "2023-03-28"
   }
 
   return axios.post( `${BASE_URL}/${path}`, data, {
