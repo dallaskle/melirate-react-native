@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import {Slider} from '@miblanchard/react-native-slider';
+import {Slider} from '@react-native-community/slider';
 
 const RangeSlider = ({ startValue, step, onChange }) => {
   const [value, setValue] = useState(startValue);

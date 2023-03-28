@@ -5,6 +5,7 @@ import SplitWeightCard from '../components/Weight/SplitWeightCard'
 import InputModal from '../components/InputModal';
 import GoalBox from '../components/Goals/GoalBox'
 import { GetWeightCardDataService } from '../services/GetWeightCardDataService';
+import ImageUploader from '../components/Images/ImageUploader';
 
 const Weight = () => {
 
@@ -45,6 +46,8 @@ const Weight = () => {
 
   return (
     <View style={styles.container}>
+
+      <ImageUploader />
 
       <GoalBox />
 
