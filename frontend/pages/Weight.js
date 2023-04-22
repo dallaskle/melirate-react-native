@@ -6,6 +6,7 @@ import InputModal from '../components/InputModal';
 import GoalBox from '../components/Goals/GoalBox'
 import { GetWeightCardDataService } from '../services/GetWeightCardDataService';
 import ImageUploader from '../components/Images/ImageUploader';
+import { WeightEntry } from '../models/WeightEntry';
 
 const Weight = () => {
 
@@ -36,12 +37,24 @@ const Weight = () => {
     },
   ]*/
 
-  let weights = GetWeightCardDataService(1);
 
   //States
   const [showInputModal, setShowInputModal] = useState(false)
-  const displayInputModal = (updater) => {
-    setShowInputModal(updater)
+
+  const inputList = [{title: "🧍 Body Weight 🧍", type: " kg"}, {title: "🏃 Body Fat % 🏃", type: "%"}, {title: "🏋️ Muscle 🏋️", type: " kg"}, {title: "💧 Hydration Level 💧", type: "%"},];
+  const propertiesList = ["bodyWeight", "bodyFat", "muscle", "hydration"];
+
+  const weightEntry = new WeightEntry();
+
+  const [weights, setWeight] = useState()
+
+  useEffect(async ()=> {
+    const _weights = await GetWeightCardDataService('1');
+    setWeight(_weights)
+  }, [])
+
+  if(!weights) {
+    return <></>
   }
 
   return (
@@ -50,8 +63,6 @@ const Weight = () => {
      
 
       <GoalBox />
-
-      <ImageUploader />
 
       <WeightCard width={'70%'} header={weights[0].header} amount={weights[0].amount} amountType={weights[0].amountType} changes={weights[0].changes} onPress={()=>displayInputModal('bodyWeight')} />
 
@@ -64,7 +75,9 @@ const Weight = () => {
     
 
       {showInputModal == "bodyWeight" ?
-        <InputModal visible={true} onClose={()=>setShowInputModal(false)} children={'just testing this'} />
+        <>
+          <InputModal visible={true} onClose={()=>setShowInputModal(false)} type={'Weight'} inputList={inputList} propertiesList={propertiesList} weightEntry={weightEntry} children={'just testing this'} />
+        </>
       : null}
 
     </View>

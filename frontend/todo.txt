@@ -1,0 +1,32 @@
+- make slider have less of a range 
+  - could cause problems when you can't input what's in the range
+- bigger slider circles
+- bigger titles in slider 
+- more padding bottom between slider items
+- raise close button
+
+WeightManual Page
+- add number format ie. (YYYY-MM-DD)
+- add user id input
+- does save button work? 
+- display default or no change amount as placeholder
+
+Create WeightList Page
+
+Create MeasurementList Page
+
+1. Upload Weight 
+    a. Manual
+    b. From Main Screen
+2. View weights
+3. Upload Measurement
+    a. Manual
+    b. From Main Screen
+4. View Measurements 
+5. Upload Image
+    a. Manual
+    b. From Main Screen
+6. View Measurements
+
+Add to propertyList to include if you should convert to percentage or not
+Add loading on WeightList screen

@@ -1,30 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import { saveUserWeight } from '../../routes/Weight';
+import { saveWeight } from '../../dao/WeightDao';
+import {Context} from '../../context/Context'
+import { WeightEntry } from '../../models/WeightEntry';
 
 const SaveWeightForm = () => {
+
+  const {user, token} = useContext(Context);
+  
   const [bodyFat, setBodyFat] = useState("");
   const [bodyWeight, setBodyWeight] = useState("");
   const [hydration, setHydration] = useState("");
   const [muscle, setMuscle] = useState("");
   const [timestamp, setTimestamp] = useState("")
 
-  const saveWeight = async () => {
-      const weightId = Math.floor(Math.random()*10000000000); // This can be generated on the server
-      const timestamp = timestamp ? timestamp : new Date().toISOString().slice(0, 10); // Current date in ISO format
-      const data = {
-        bodyFat,
-        bodyWeight,
-        hydration,
-        muscle,
-        weightId,
-        timestamp
-      };       
-      saveUserWeight("12345", data).then(res => console.log(res)).catch(err => console.log(err))
+  const saveMyWeight = async () => {
+      const weightEntry = new WeightEntry(bodyWeight, bodyFat, muscle, hydration, timestamp);      
+      saveWeight(token, user.id, weightEntry).then(res => console.log(res)).catch(err => console.log(err))
   };
 
   return (
+    <><Text style={styles.title}>Manual Weight Entry</Text>
     <View style={styles.container}>
+      
       <Text style={styles.label}>Body Fat:</Text>
       <TextInput
         style={styles.input}
@@ -55,15 +53,21 @@ const SaveWeightForm = () => {
         value={timestamp}
         onChangeText={setTimestamp}
       />
-      <Button title="Save" onPress={saveWeight} />
+      <Button title="Save" onPress={saveMyWeight} />
     </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 8,
+  },
+  title: {
+    padding: 8,
+    fontSize: 28,
+    fontWeight: '500'
   },
   label: {
     fontSize: 16,

@@ -1,42 +1,14 @@
-const fakeWeightData = [
-    {
-        weight_id: 1, 
-        timestamp: '2023-03-17',
-        bodyWeight: 76.2,
-        bodyFatPercent: .24,
-        muscle: 37.2,
-        hydration: .54,
-        user_id: 1,
-    },
-    {
-        weight_id: 3, 
-        timestamp: '2023-03-24',
-        bodyWeight: 76,
-        bodyFatPercent: .234,
-        muscle: 37,
-        hydration: .57,
-        user_id: 1,
-    },
-    {
-        weight_id: 2, 
-        timestamp: '2023-03-23',
-        bodyWeight: 76.2,
-        bodyFatPercent: .235,
-        muscle: 37.1,
-        hydration: .56,
-        user_id: 1,
-    },
-    {
-        weight_id: 0, 
-        timestamp: '2023-02-24',
-        bodyWeight: 75,
-        bodyFatPercent: .234,
-        muscle: 37,
-        hydration: .57,
-        user_id: 1,
-    },
-]
+import { getAllUserWeights } from "../routes/Weight";
+import { saveUserWeight } from "../routes/Weight";
 
-export const getUsersWeight = (user_id) => {
-    return fakeWeightData
+export const getUsersWeight = async (token, user_id) => {
+    const res = await getAllUserWeights(token, user_id)
+    console.log(res)
+    return res.data
 }
+
+export const saveWeight = async (token, user_id, data) => {
+    const res = await saveUserWeight(token, user_id, data)
+    console.log(res)
+    return res;
+};

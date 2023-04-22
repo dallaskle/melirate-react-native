@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export const BASE_URL = "https://l6wfxjgpl6.execute-api.us-west-2.amazonaws.com/dev";
+//export const BASE_URL = "https://l6wfxjgpl6.execute-api.us-west-2.amazonaws.com/dev";
+export const BASE_URL = "https://7sktscskki.execute-api.us-west-2.amazonaws.com/dev";
 
 export const getResponse = (token, path, params) => {
 

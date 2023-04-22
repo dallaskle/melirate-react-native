@@ -5,14 +5,13 @@ import { BASE_URL } from './url';
 // 2. Get All User Weights (GET)
 // 3. Save User Weight (POST)
 
-export const getAllUserWeights = async (user_id) => {
-  const token = "";
-  const path = `/${user_id}/weights`;
+export const getAllUserWeights = async (token, user_id) => {
+  const path = `/users/${user_id}/weights`;
 
-  return axios.get( `${BASE_URL}/${path}`,{
+  return axios.get( `${BASE_URL}/users/${user_id}/weights`,{
     headers: {
-      'Content-Type': 'application/json'
-      //Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Authorization: `${token}`,
     },
   })
 }
@@ -20,7 +19,7 @@ export const getAllUserWeights = async (user_id) => {
 export const getUserWeight = (user_id, weight_id) => {
 
   const token = "";
-  const path = `/${user_id}/weight`;
+  const path = `/users/${user_id}/weight`;
   const params = {
     "weightId": weight_id,
   }
@@ -34,23 +33,20 @@ export const getUserWeight = (user_id, weight_id) => {
   })
 }      
 
-export const saveUserWeight = (user_id, _params) => {
-
-  const token = "";
-  const path = `/${user_id}/weight`;
+export const saveUserWeight = (token, user_id, _params) => {
+  const path = `/users/${user_id}/weight`;
   const data = {
     "bodyFat": _params.bodyFat,
     "bodyWeight": _params.bodyWeight,
     "hydration": _params.hydration,
     "muscle": _params.muscle,
-    "weightId": _params.weightId ? _params.weightId : "231341",
     "timestamp": _params.timestamp ? _params.timestamp : "2023-03-28"
   }
 
   return axios.post( `${BASE_URL}/${path}`, data, {
     headers: {
-      'Content-Type': 'application/json'
-      //Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Authorization: `${token}`,
     }
   })
 }      

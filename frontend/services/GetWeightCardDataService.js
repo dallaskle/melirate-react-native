@@ -1,8 +1,8 @@
 import { WeightsToWeightCardData } from '../converters/WeightsToWeightCardData'
 import {getUsersWeight} from '../dao/WeightDao'
 
-export const GetWeightCardDataService = (user_id) => {
-    const data = getUsersWeight(user_id)
+export const GetWeightCardDataService = async (user_id) => {
+    const data = await getUsersWeight(user_id)
 
     const result = WeightsToWeightCardData(data)
 

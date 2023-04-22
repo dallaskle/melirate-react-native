@@ -9,7 +9,7 @@ const WeightCard = (props) => {
         
         <View style={styles.main}>
             <Text style={styles.header}>{props.header}</Text>
-            {props.amount ? <Text style={styles.weight}>{props.amount} {props.amountType}</Text> : <Button text={"ADD WEIGHT"} onPress={props.onPress} />}
+            {/*props.amount*/ false ? <Text style={styles.weight}>{props.amount} {props.amountType}</Text> : <Button text={"ADD WEIGHT"} onPress={props.onPress} />}
         </View>
 
         <View style={styles.row}>
