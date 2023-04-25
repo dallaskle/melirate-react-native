@@ -1,10 +1,15 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MELIRATE_LIGHTEST_GRAY } from '../../design/Colors';
+import WeightPopup from '../Weight/WeightPopup';
 
 const WeightCard = ({ weightData }) => {
+
+  const [show, setShow] = useState(false)
+
   return (
-    <View style={styles.card}>
+    <>
+    <TouchableOpacity onPress={()=>setShow(true)} style={styles.card}>
       <Text style={styles.timestamp}>{weightData.timestamp}</Text>
       <View style={styles.row}>
         <View style={styles.column}>
@@ -24,7 +29,9 @@ const WeightCard = ({ weightData }) => {
           <Text style={styles.value}>{weightData.hydration ? `${(weightData.hydration * 100).toFixed(1)}%` : null}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
+    {show ? <WeightPopup visible={true} onClose={()=>setShow(false)} weightData={weightData} /> : null}
+    </>
   );
 };
 
