@@ -43,7 +43,7 @@ const Auth = () => {
 
             }).catch(err => {
                 setLoading(false)
-                console.log('error with signup')
+                console.log('error with login')
                 console.log(err)
                 console.log(err.message)
             })
@@ -62,6 +62,7 @@ const Auth = () => {
                 }
 
                 //route to new page
+                updateRouter({name: 'WeightList', label: 'Weight List'})
 
             }).catch(err => {
                 setLoading(false)

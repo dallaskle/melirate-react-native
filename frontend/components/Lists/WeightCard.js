@@ -3,7 +3,7 @@ import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MELIRATE_LIGHTEST_GRAY } from '../../design/Colors';
 import WeightPopup from '../Weight/WeightPopup';
 
-const WeightCard = ({ weightData }) => {
+const WeightCard = ({ weightData, refreshData }) => {
 
   const [show, setShow] = useState(false)
 
@@ -30,7 +30,7 @@ const WeightCard = ({ weightData }) => {
         </View>
       </View>
     </TouchableOpacity>
-    {show ? <WeightPopup visible={true} onClose={()=>setShow(false)} weightData={weightData} /> : null}
+    {show ? <WeightPopup visible={true} onClose={()=>setShow(false)} weightData={weightData} refreshData={refreshData} /> : null}
     </>
   );
 };

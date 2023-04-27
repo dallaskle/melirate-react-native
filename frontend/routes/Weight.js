@@ -33,14 +33,14 @@ export const getUserWeight = (user_id, weight_id) => {
   })
 }      
 
-export const saveUserWeight = (token, user_id, _params) => {
+export const saveUserWeight = async (token, user_id, _params) => {
   const path = `/users/${user_id}/weight`;
   const data = {
     "bodyFat": _params.bodyFat,
     "bodyWeight": _params.bodyWeight,
     "hydration": _params.hydration,
     "muscle": _params.muscle,
-    "timestamp": _params.timestamp ? _params.timestamp : "2023-03-28"
+    "timestamp": _params.timestamp
   }
 
   return axios.post( `${BASE_URL}/${path}`, data, {
@@ -48,5 +48,20 @@ export const saveUserWeight = (token, user_id, _params) => {
       'Content-Type': 'application/json',
       Authorization: `${token}`,
     }
+  })
+}      
+
+export const deleteUserWeight = (token, user_id, _params) => {
+  const path = `/users/${user_id}/weight`;
+  const params = {
+    "timestamp": _params.timestamp
+  }
+
+  return axios.delete( `${BASE_URL}/${path}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${token}`,
+    },
+    params: params
   })
 }      

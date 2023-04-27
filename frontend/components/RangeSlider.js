@@ -29,7 +29,7 @@ const RangeSlider = ({ startValue, step, type, property, weightEntry, range }) =
               <Text style={styles.adjustBtnText}>-</Text>
             </TouchableOpacity>
 
-            <Pressable onPress={() => active ? null : setActive(true)}>
+            <Pressable onPress={() => active ? null : handleValueChange(value)}>
               <Text style={active ? styles.label : [styles.label, {opacity: .35}]}>
                 {(value * (type.type == '%' ? 100 : 1)).toString().substring(0,4)}{type.type}
               </Text>

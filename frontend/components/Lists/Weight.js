@@ -6,7 +6,6 @@ import AddWeight from '../Weight/AddWeight';
 import {Context} from '../../context/Context'
 import { WeightEntry } from '../../models/WeightEntry';
 import Spinner from '../Spinner';
-import { MELIRATE_LIGHTEST_GRAY } from '../../design/Colors';
 import WeightCard from './WeightCard';
 
 const WeightList = () => {
@@ -16,16 +15,26 @@ const WeightList = () => {
   const [data, setData] = useState([]);
   const [loadingData, setLoadingData] = useState(true)
 
-  const refreshData = (weightEntry) => {
+  const refreshData = (weightEntry, type) => {
     weightEntry.userId = user.id;
-    setData([weightEntry, ...data])
-    getUsersWeightAsync()
+    if (type == "ADD") {
+      if (data) {
+        setData([weightEntry, ...data])
+      } else {
+        setData([weightEntry])
+      }
+    } else if (type == "DELETE") {
+      const newData = data.filter((entry) => entry.timestamp !== weightEntry.timestamp);
+      setData(newData);
+    }
   }
 
   const getUsersWeightAsync = async () => {
+    console.log('running')
     const weightData = await getUsersWeight(token, user.id);
     if (weightData) {
       setData(sortWeights(weightData));
+      setLoadingData(false)
     } else {
       setLoadingData(false)
     }
@@ -37,7 +46,7 @@ const WeightList = () => {
     }
   }, [user, token]);
 
-  const renderItem = ({ item }) => <WeightCard weightData={item} />;
+  const renderItem = ({ item }) => <WeightCard weightData={item} refreshData={refreshData} />;
 
   if (!data.length) {
     return <View style={{flex: 1, justifyContent: 'space-between'}}>
@@ -49,7 +58,7 @@ const WeightList = () => {
             <Text style={{textAlign: 'center', color: 'lightgray'}}>No weights added yet</Text>
         
             <View style={styles.addContainer}>
-              <AddWeight token={token} user={user} data={new WeightEntry(76, .23, 38, .56)} first={true} />
+              <AddWeight token={token} user={user} data={new WeightEntry()} first={true} />
             </View>
           </>
         }

@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Button from '../Button';
 import InputModal from '../InputModal';
 import { WeightEntry } from '../../models/WeightEntry';
 import { saveWeight } from '../../dao/WeightDao';
 import { MELIRATE_GRAY } from '../../design/Colors';
+import {Context} from '../../context/Context'
 
-const AddWeight = ({token, user, data, refreshData, first}) => {
+const AddWeight = ({ data, refreshData, first}) => {
+
+  const {user, token} = useContext(Context)
 
     const inputList = [
         {title: "🧍 Body Weight 🧍", type: " kg", property: "bodyWeight",}, 
@@ -22,9 +25,12 @@ const AddWeight = ({token, user, data, refreshData, first}) => {
     const saveWeightEntry = () => {
         setShowInputModal(false)
         setSaving(true)
+        refreshData(weightEntry, "ADD")
         saveWeight(token, user.id, weightEntry).then(res => {
-          refreshData(weightEntry)
           setSaving(false)
+        }).catch(err => {
+          setSaving(false)
+          refreshData(weightEntry, "DELETE")
         })
     }
 
