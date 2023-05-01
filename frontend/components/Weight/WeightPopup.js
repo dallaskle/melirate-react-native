@@ -25,6 +25,7 @@ const WeightPopup = ({ visible, onClose, weightData, refreshData }) => {
       setModalVisible(false)
     }).catch(err => {
       refreshData(weightData, "ADD")
+      setModalVisible(false)
       setDeleting(false)
     })
   }
