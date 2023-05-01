@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Platform } from 'react-native';
 import { BACKGROUND_COLOR } from './frontend/design/Colors';
@@ -7,7 +7,7 @@ import { RouterContextProvider } from './frontend/context/RouterContext';
 import Router from './frontend/pages/Router';
 
 export default function App() {
-  
+
   return (
     <ContextProvider>
       <RouterContextProvider>

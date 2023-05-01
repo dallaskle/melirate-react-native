@@ -6,12 +6,10 @@ export const getUsersWeight = async (token, user_id) => {
 }
 
 export const saveWeight = async (token, user_id, data) => {
-    console.log('here')
     return saveUserWeight(token, user_id, data)
 };
 
 export const deleteWeight = async (token, user_id, data) => {
     const res = await deleteUserWeight(token, user_id, data)
-    console.log(res)
     return res;
 };

@@ -10,7 +10,6 @@ const RangeSlider = ({ startValue, step, type, property, weightEntry, range }) =
     active ? null : setActive(true)
     weightEntry[property] = newValue;
     setValue(newValue);
-    console.log(weightEntry)
   };
 
   return (

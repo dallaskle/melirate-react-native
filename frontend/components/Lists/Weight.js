@@ -30,7 +30,6 @@ const WeightList = () => {
   }
 
   const getUsersWeightAsync = async () => {
-    console.log('running')
     const weightData = await getUsersWeight(token, user.id);
     if (weightData) {
       setData(sortWeights(weightData));

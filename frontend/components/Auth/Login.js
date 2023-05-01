@@ -11,7 +11,6 @@ const Login = (props) => {
     const [password, setPassword] = useState('');
 
     const handleScreen = () => {
-        console.log(isLogin)
         props.setIsLogin(!isLogin)
         setIsLogin(!isLogin)
     }

@@ -14,7 +14,6 @@ export const getResponse = (token, path, params) => {
       })
         .then(response => {
           // Handle successful response
-          console.log(response.data);
           return response;
         })
         .catch(error => {

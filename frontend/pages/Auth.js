@@ -6,6 +6,7 @@ import { loginUser, signupUser } from '../dao/UserDao';
 import {Context} from '../context/Context'
 import {RouterContext} from '../context/RouterContext'
 import { Alert } from 'react-native';
+import { saveToken } from '../services/Auth/GetTokenFromDevice';
 
 
 const Auth = () => {
@@ -22,53 +23,32 @@ const Auth = () => {
 
     const handleClick = () => {
         // Implement your own signup logic here
-        console.log(email)
-        console.log(password)
         if (isLogin) {
 
             setLoading(true)
 
             loginUser(email,password).then(data => {
-
-                console.log('worked')
-                
                 updateToken(data.token)
                 updateUserData(data.user)
-
-                //route to new page
-
                 setLoading(false)
-
                 updateRouter({name: 'WeightList', label: 'Weight List'})
-
             }).catch(err => {
                 setLoading(false)
-                console.log('error with login')
-                console.log(err)
-                console.log(err.message)
             })
             
         } else {
             setLoading(true)
             signupUser(email, password).then(data => {
-
-                console.log('worked')
-                
                 updateToken(data.token)
                 updateUserData(data.user)
-
+                saveToken(data.token)
                 if(!data.token){
                     setLoading(false)
                 }
-
                 //route to new page
                 updateRouter({name: 'WeightList', label: 'Weight List'})
-
             }).catch(err => {
                 setLoading(false)
-                console.log('error with signup')
-                console.log(err)
-                console.log(err.message)
             })
         }
 

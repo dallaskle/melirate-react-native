@@ -10,34 +10,6 @@ import { WeightEntry } from '../models/WeightEntry';
 
 const Weight = () => {
 
-  /*const weights = [
-    {
-      header: 'Body Weight',
-      amount: 76.1,
-      amountType: 'kg',
-      changes: [-0.2, -0.2, -0.2],
-    },
-    {
-      header: 'Body Fat %',
-      amount: 23.4,
-      amountType: '%',
-      changes: [-0.2, -0.2, -0.2],
-    },
-    {
-      header: 'Muscle',
-      amount: 22.8,
-      amountType: 'kg',
-      changes: [-0.2, -0.2, -0.2],
-    },
-    {
-      header: 'Hydration %',
-      amount: 56.2,
-      amountType: '%',
-      changes: [-0.2, -0.2, -0.2],
-    },
-  ]*/
-
-
   //States
   const [showInputModal, setShowInputModal] = useState(false)
 
@@ -58,9 +30,7 @@ const Weight = () => {
   }
 
   return (
-    <View style={styles.container}>
-
-     
+    <View style={styles.container}>     
 
       <GoalBox />
 
