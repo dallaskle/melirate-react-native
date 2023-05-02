@@ -9,6 +9,7 @@ import Menu from '../components/Menu/Menu';
 import Auth from './Auth';
 import { getToken } from '../services/Auth/GetTokenFromDevice';
 import { getUserFromDevice } from '../services/GetUserFromDevice';
+import { getUserFromToken_userDao } from '../dao/UserDao';
 
 const Router = () => {
   const { token, updateToken, updateUserData } = useContext(Context)
@@ -44,6 +45,11 @@ const Router = () => {
   useEffect(()=>{
     getToken().then(res => {
       updateToken(res)
+      getUserFromToken_userDao(res).then(loginRes => {
+        if(loginRes.user) {
+          updateUserData(loginRes.user)
+        }
+      })
     })
     getUserFromDevice().then(res => {
       updateUserData(res)

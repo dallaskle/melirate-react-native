@@ -36,3 +36,14 @@ export const signup = (email, password) => {
     }
   })
 }      
+
+export const getUserFromToken = async (token) => {
+  const path = `/users/token`;
+
+  return axios.get(`${BASE_URL}${path}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`,
+    },
+  });
+};
