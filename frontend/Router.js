@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import { View,  Text } from 'react-native';
-import { RouterContext } from '../context/RouterContext';
-import { Context } from '../context/Context';
-import Weight from './Weight';
-import WeightList from '../components/Lists/Weight';
-import WeightManual from '../components/ManualInput/Weight';
-import Menu from '../components/Menu/Menu';
-import Auth from './Auth';
-import { getToken } from '../services/Auth/GetTokenFromDevice';
-import { getUserFromDevice } from '../services/GetUserFromDevice';
-import { getUserFromToken_userDao } from '../dao/UserDao';
+import { RouterContext } from './context/RouterContext';
+import { Context } from './context/Context';
+import Weight from './pages/Weight';
+import WeightList from './components/Lists/Weight';
+import WeightManual from './components/ManualInput/Weight';
+import Menu from './components/Menu/Menu';
+import Auth from './pages/Auth';
+import { getToken } from './services/Auth/GetTokenFromDevice';
+import { getUserFromDevice } from './services/GetUserFromDevice';
+import { getUserFromToken_userDao } from './dao/UserDao';
 
 const Router = () => {
   const { token, updateToken, updateUserData } = useContext(Context)

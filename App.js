@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import { BACKGROUND_COLOR } from './frontend/design/Colors';
 import { ContextProvider } from './frontend/context/Context';
 import { RouterContextProvider } from './frontend/context/RouterContext';
-import Router from './frontend/pages/Router';
+import Router from './frontend/Router';
 
 export default function App() {
 

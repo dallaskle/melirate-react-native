@@ -7,6 +7,7 @@ import {Context} from '../../context/Context'
 import { WeightEntry } from '../../models/WeightEntry';
 import Spinner from '../Spinner';
 import WeightCard from './WeightCard';
+import WeightView from '../SingleView/WeightView'
 
 const WeightList = () => {
 
@@ -66,6 +67,10 @@ const WeightList = () => {
 
   return (
     <>
+      <WeightView data={data} title={"Body Weight"} property={"bodyWeight"} />
+      <WeightView data={data} title={"Body Fat"} property={"bodyFat"} />
+      <WeightView data={data} title={"Muscle"} property={"muscle"} />
+      <WeightView data={data} title={"Hydration"} property={"hydration"} />
       <FlatList
         data={data}
         renderItem={renderItem}
