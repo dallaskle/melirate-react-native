@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { WieghtArrayToPropertyArray } from '../../converters/WeightArrayToProperyArray';
+import { WieghtArrayToPropertyArray, separateByProperty } from '../../converters/WeightArrayToProperyArray';
 import { MELIRATE_GRAY } from '../../design/Colors';
+import SingleLine from './SingleLine'
 
 const WeightView = ({ data, title, property }) => {
 
-    let newData = []
-
-    newData = WieghtArrayToPropertyArray(property, data)
+    const [newData] = useState(WieghtArrayToPropertyArray(property, data))
+    const [graphData] = useState(separateByProperty(newData, "timestamp", "property"))
 
   return (
     <View style={styles.container}>
@@ -15,14 +15,15 @@ const WeightView = ({ data, title, property }) => {
       <FlatList
         horizontal
         data={newData}
-        keyExtractor={item => item.index}
+        keyExtractor={item => `${item.timestamp}${item.property}`}
         renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
+          <View key={`${item.timestamp}${item.property}`} style={styles.itemContainer}>
             <Text style={styles.dateText}>{item.timestamp}</Text>
             <Text style={styles.itemText}>{`${item.property}`}</Text>
           </View>
         )}
       />
+      <SingleLine graphData={graphData} />
     </View>
   );
 };
@@ -30,10 +31,11 @@ const WeightView = ({ data, title, property }) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
+    paddingVertical: 4,
   },
   heading: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontWeight: '300',
     marginVertical: 4,
   },
   itemContainer: {

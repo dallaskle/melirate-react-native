@@ -2,14 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import { View,  Text } from 'react-native';
 import { RouterContext } from './context/RouterContext';
 import { Context } from './context/Context';
-import Weight from './pages/Weight';
+import Weight from './screens/Weight';
 import WeightList from './components/Lists/Weight';
 import WeightManual from './components/ManualInput/Weight';
 import Menu from './components/Menu/Menu';
-import Auth from './pages/Auth';
+import Auth from './screens/Auth';
 import { getToken } from './services/Auth/GetTokenFromDevice';
 import { getUserFromDevice } from './services/GetUserFromDevice';
 import { getUserFromToken_userDao } from './dao/UserDao';
+import Main from './screens/Main';
 
 const Router = () => {
   const { token, updateToken, updateUserData } = useContext(Context)
@@ -18,6 +19,7 @@ const Router = () => {
   const routes = [
    /* { name: 'Auth', label: 'Auth' },
     { name: 'Weight', label: 'Weight' },*/
+    { name: 'Main', label: 'Home' },
     { name: 'WeightList', label: 'Weight List' },
     { name: 'WeightManual', label: 'Add Weight Manually' },
     /*{ name: 'Measurement', label: 'Measurement' },
@@ -31,6 +33,8 @@ const Router = () => {
     switch (router.name) {
       case 'Auth':
         return <Auth />;
+      case 'Main':
+        return <Main />;
       case 'Weight':
         return <Weight />;
       case 'WeightList':

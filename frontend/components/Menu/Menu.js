@@ -3,6 +3,7 @@ import { View, Text, Animated, TouchableOpacity } from 'react-native';
 import { Context } from '../../context/Context';
 import { RouterContext } from '../../context/RouterContext';
 import Button from '../Button'
+import { MELIRATE_GRAY, MELIRATE_LIGHTEST_GRAY } from '../../design/Colors';
 
 const Menu = ({ children, routes }) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -70,7 +71,9 @@ const Menu = ({ children, routes }) => {
             right: 0,
             width: '20%',
             height: 80,
-            //backgroundColor: 'black',
+            backgroundColor: MELIRATE_LIGHTEST_GRAY,
+            borderColor: MELIRATE_GRAY,
+            borderWidth: .5,
             justifyContent: 'center',
             alignItems: 'center',
             shadowColor: '#000',

@@ -7,11 +7,10 @@ import {Context} from '../../context/Context'
 import { WeightEntry } from '../../models/WeightEntry';
 import Spinner from '../Spinner';
 import WeightCard from './WeightCard';
-import WeightView from '../SingleView/WeightView'
 
 const WeightList = () => {
 
-  const {token, user} = useContext(Context)
+  const {token, user, updateWeightsData} = useContext(Context)
 
   const [data, setData] = useState([]);
   const [loadingData, setLoadingData] = useState(true)
@@ -27,13 +26,16 @@ const WeightList = () => {
     } else if (type == "DELETE") {
       const newData = data.filter((entry) => entry.timestamp !== weightEntry.timestamp);
       setData(newData);
+      updateWeightsData(newData)
     }
   }
 
   const getUsersWeightAsync = async () => {
     const weightData = await getUsersWeight(token, user.id);
     if (weightData) {
-      setData(sortWeights(weightData));
+      const sortedWeights = sortWeights(weightData)
+      setData(sortedWeights);
+      updateWeightsData(sortedWeights)
       setLoadingData(false)
     } else {
       setLoadingData(false)
@@ -67,10 +69,6 @@ const WeightList = () => {
 
   return (
     <>
-      <WeightView data={data} title={"Body Weight"} property={"bodyWeight"} />
-      <WeightView data={data} title={"Body Fat"} property={"bodyFat"} />
-      <WeightView data={data} title={"Muscle"} property={"muscle"} />
-      <WeightView data={data} title={"Hydration"} property={"hydration"} />
       <FlatList
         data={data}
         renderItem={renderItem}
