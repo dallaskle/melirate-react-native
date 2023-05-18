@@ -16,7 +16,7 @@ const SaveWeightForm = () => {
 
   const saveMyWeight = async () => {
       const weightEntry = new WeightEntry(bodyWeight, bodyFat, muscle, hydration, timestamp);      
-      saveWeight(token, user.id, weightEntry).then(res => console.log(res)).catch(err => console.log(err))
+      saveWeight(token, user.id, weightEntry)
   };
 
   return (

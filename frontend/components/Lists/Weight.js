@@ -10,9 +10,9 @@ import WeightCard from './WeightCard';
 
 const WeightList = () => {
 
-  const {token, user, updateWeightsData} = useContext(Context)
+  const {token, user, weights, updateWeightsData} = useContext(Context)
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(weights);
   const [loadingData, setLoadingData] = useState(true)
 
   const refreshData = (weightEntry, type) => {
@@ -20,8 +20,10 @@ const WeightList = () => {
     if (type == "ADD") {
       if (data) {
         setData([weightEntry, ...data])
+        updateWeightsData([weightEntry, ...data])
       } else {
         setData([weightEntry])
+        updateWeightsData([weightEntry])
       }
     } else if (type == "DELETE") {
       const newData = data.filter((entry) => entry.timestamp !== weightEntry.timestamp);
@@ -52,7 +54,6 @@ const WeightList = () => {
 
   if (!data.length) {
     return <View style={{flex: 1, justifyContent: 'space-between'}}>
-        <Text style={styles.title}>Weights</Text>
         {loadingData ? 
           <Spinner />
           :
@@ -74,7 +75,7 @@ const WeightList = () => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.scrollContainer}
-        ListHeaderComponent={<Text style={styles.title}>Weights</Text>}
+        //ListHeaderComponent={<Text style={styles.title}>Weights</Text>}
       />
       <View style={styles.addContainer}>
         <AddWeight token={token} user={user} data={data[0]} refreshData={refreshData} />
@@ -93,9 +94,9 @@ const styles = StyleSheet.create({
   },
   addContainer: {
     backgroundColor: '#fff',
-    width: '60%',
-    marginHorizontal: '20%',
-    paddingBottom: 20,
+    width: '100%',
+    marginHorizontal: '0%',
+    paddingBottom: 0,
   },
   title: {
     padding: 8,

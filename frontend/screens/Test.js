@@ -6,7 +6,6 @@ const Test = () => {
   return (
     <View style={styles.container}>
       <Text>Hello, world!</Text>
-      <WeightCard width={'70%'} />
     </View>
   );
 }

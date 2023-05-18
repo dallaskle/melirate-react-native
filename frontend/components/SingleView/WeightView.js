@@ -1,13 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { WieghtArrayToPropertyArray, separateByProperty } from '../../converters/WeightArrayToProperyArray';
 import { MELIRATE_GRAY } from '../../design/Colors';
 import SingleLine from './SingleLine'
+import { Context } from "../../context/Context";
+import {limitArray} from '../../converters/limitArray'
 
 const WeightView = ({ data, title, property }) => {
 
-    const [newData] = useState(WieghtArrayToPropertyArray(property, data))
-    const [graphData] = useState(separateByProperty(newData, "timestamp", "property"))
+  const { weights } = useContext(Context);
+
+    const [newData, setNewData] = useState(limitArray(WieghtArrayToPropertyArray(property, weights), 7))
+    const [graphData, setGraphData] = useState(separateByProperty(newData, "timestamp", "property"))
+
+    useEffect(()=> {
+      setNewData(limitArray(WieghtArrayToPropertyArray(property, weights),7))
+    }, [weights])
+
+    useEffect(() => {
+      setGraphData(separateByProperty(newData, "timestamp", "property"))
+    },[newData])
 
   return (
     <View style={styles.container}>
@@ -15,7 +27,7 @@ const WeightView = ({ data, title, property }) => {
       <FlatList
         horizontal
         data={newData}
-        keyExtractor={item => `${item.timestamp}${item.property}`}
+        keyExtractor={item => `${item.timestamp}${item.property}${Math.random()}`}
         renderItem={({ item }) => (
           <View key={`${item.timestamp}${item.property}`} style={styles.itemContainer}>
             <Text style={styles.dateText}>{item.timestamp}</Text>

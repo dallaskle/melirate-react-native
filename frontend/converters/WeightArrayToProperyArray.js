@@ -17,8 +17,7 @@ export const WieghtArrayToPropertyArray = (propertyName, data) => {
 export function separateByProperty(arr, propName1, propName2) {
     const arr1 = [];
     const arr2 = [];
-    console.log(arr)
-
+    
     let count = 0;
     
     arr.forEach(obj => {
@@ -32,9 +31,6 @@ export function separateByProperty(arr, propName1, propName2) {
               }
         }
     });
-
-    console.log(arr1)
-    console.log(arr2)
     
     return [arr1.reverse(), arr2.reverse()];
   }
