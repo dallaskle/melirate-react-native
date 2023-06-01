@@ -7,6 +7,7 @@ import { getToken } from '../services/Auth/GetTokenFromDevice';
 import { getUserFromDevice } from '../services/GetUserFromDevice';
 import { getUserFromToken_userDao } from '../dao/UserDao';
 import { Context } from '../context/Context';
+import AuthNavigator from './AuthNav';
 
 export default function Navigation() {
 
@@ -30,11 +31,18 @@ export default function Navigation() {
     return(
         <NavigationContainer>
 
-            {/* Auth Navigator  */}
+            
+            {token == null ? 
+              /* Auth Navigator  */
+              <AuthNavigator />
+            : 
+              /* App Navigator (Logged in)  */
+              <Tabs />
+            }
+
             {/* Onboarding Navigator  */}
 
-            {/* App Navigator (Logged in)  */}
-            <Tabs />
+            
 
         </NavigationContainer>
     )

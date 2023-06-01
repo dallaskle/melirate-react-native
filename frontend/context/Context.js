@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
-import { saveToken } from '../services/Auth/GetTokenFromDevice';
-import { saveUserOnDevice } from '../services/GetUserFromDevice';
-import { getWeightFromDevice, saveWeightOnDevice } from '../services/GetWeightFromDevice';
+import { saveToken, deleteTokenFromDevice } from '../services/Auth/GetTokenFromDevice';
+import { saveUserOnDevice, deleteUserOnDevice } from '../services/GetUserFromDevice';
+import { getWeightFromDevice, saveWeightOnDevice, deleteAllWeightOnDevice } from '../services/GetWeightFromDevice';
 
 export const Context = createContext();
 
@@ -21,6 +21,16 @@ export const ContextProvider = ({ children }) => {
     saveToken(newToken)
   }
 
+  const logoutUser = () => {
+    console.log('logout')
+    setUser(null)
+    setToken(null)
+    setWeights([])
+    deleteTokenFromDevice()
+    deleteUserOnDevice()
+    deleteAllWeightOnDevice()
+  }
+
   const initializeWeightsData = async () => {
       const newWeights = await getWeightFromDevice();
       if (newWeights) {
@@ -37,7 +47,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <Context.Provider 
       value={{ 
-        user, updateUserData, 
+        user, updateUserData, logoutUser,
         token, updateToken,
         weights, updateWeightsData, initializeWeightsData
       }}
