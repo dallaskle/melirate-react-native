@@ -4,8 +4,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Test from '../screens/Test';
 import HomeScreenNav from './HomeScreenNav';
 import WeightScreenNav from './WeightScreenNav';
-import FitbitScreen from './FitbitScreen'
-import SettingsScreen from './SettingsScreen'
+import FitbitScreen from './FitbitScreenNav'
+import SettingsScreen from './SettingsScreenNav'
 
 const Tab = createBottomTabNavigator();
 
@@ -14,10 +14,10 @@ export default function Tabs() {
         <Tab.Navigator
             screenOptions={{headerShown: false}}
         >   
-            <Tab.Screen name="Weight" component={HomeScreenNav} />
-            <Tab.Screen name="WeightList" component={WeightScreenNav} />
-            <Tab.Screen name="FitFriends" component={FitbitScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
+            <Tab.Screen name=" Home " component={HomeScreenNav} />
+            <Tab.Screen name=" WeightList " component={WeightScreenNav} />
+            <Tab.Screen name=" FitFriends " component={FitbitScreen} />
+            <Tab.Screen name=" Settings " component={SettingsScreen} />
         </Tab.Navigator>
     )
 }

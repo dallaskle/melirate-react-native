@@ -1,18 +1,19 @@
 import React from 'react'
 import {StyleSheet, Image} from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import Main from '../screens/Main';
+import Settings from '../screens/Settings/Settings'
 import Logo from '../resources/images/logo.png'
 
-const HomeScreen = createNativeStackNavigator();
+const SettingsScreen = createNativeStackNavigator();
 
-export default function HomeScreenNav() {
+export default function SettingsScreenNav() {
     return(
-        <HomeScreen.Navigator
+        <SettingsScreen.Navigator
             screenOptions={{headerLeft: ()=> (<Image style={styles.logo} source={Logo} />)}}
         >
-            <HomeScreen.Screen name="Home" component={Main} />
-        </HomeScreen.Navigator>
+            <SettingsScreen.Screen name="Settings" component={Settings} />
+        </SettingsScreen.Navigator>
     )
 }
 
